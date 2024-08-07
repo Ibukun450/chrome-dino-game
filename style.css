@@ -1,0 +1,121 @@
+@keyframes slideright {
+    from {
+        background-position: 70000%;
+    }
+
+    to {
+        background-position: 0;
+    }
+}
+
+
+#desert {
+    position: absolute;
+    background-image: url("t-rex-background.png");
+    height: 200px;
+    width: 100%;
+    animation: slideright 600s infinite linear;
+    bottom: 40%;
+}
+
+.dino {
+    background-image: url(t-rex.png);
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+}
+
+.largeCactus {
+    background-image: url('LargeCactus1.png');
+    width: 95px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+}
+
+.largeCactus2 {
+    background-image: url('LargeCactus2.png');
+    width: 95px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+}
+
+.largeCactus3 {
+    background-image: url('LargeCactus3.png');
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+}
+
+.smallCactus {
+    background-image: url('SmallCactus1.png');
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    background-repeat: no-repeat;
+}
+
+.smallCactus2 {
+    background-image: url('SmallCactus2.png');
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    background-repeat: no-repeat;
+    bottom: 0;
+}
+
+.smallCactus3 {
+    background-image: url('SmallCactus3.png');
+    width: 110px;
+    height: 80px;
+    position: absolute;
+    background-repeat: no-repeat;
+    bottom: 0;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+#alert {
+    opacity: 0;
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center text */
+    letter-spacing: 15px;
+}
+
+#alert button {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-color: transparent;
+    padding-top: 30px;
+}
+
+#alert button img {
+    width: 65px;
+    height: 60px;
+}
+
+.timer {
+    display: flex;
+    justify-content: right;
+    padding-right: 20px;
+}
+
+#timer {
+    padding-right: 10px;
+}
+
+#highScore {
+    padding-right: 10px;
+}
