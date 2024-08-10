@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isGameOver = false;
     let movingbg = document.getElementById('desert');
     
+    
+    
     function control(e) {
         if (e.code === 'Space') {
             if (!isJumping) {
@@ -14,6 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    document.addEventListener('touchstart', function() {
+        if (!isJumping) {
+            jump();
+        }
+    })
+    document.addEventListener('click', function() {
+        if (!isJumping) {
+            jump();
+        }
+    })
+    
+
     
     document.addEventListener('keydown', control);
 
@@ -36,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 10);
             }
 
-            position += 30;
+            position += 35;
             count++;
             position = position * gravity;
             dino.style.bottom = position + 'px';
