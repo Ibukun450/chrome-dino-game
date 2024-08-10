@@ -6,9 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let isJumping = false;
     let isGameOver = false;
     let movingbg = document.getElementById('desert');
-    
-    
-    
+    let gameStarted = false;
+
+    // Function to start the game
+    function startGame() {
+        document.removeEventListener('keydown', startGame);
+        document.removeEventListener('touchstart', startGame);
+        document.removeEventListener('click', startGame);
+
+        document.addEventListener('keydown', control);
+        
+        if (!gameStarted) {
+            movingbg.style.animationPlayState = 'running'; // Start the background animation
+            startTimer(); // Start the game timer
+            generateObstacles(); // Start generating obstacles
+            gameStarted = true;
+        }
+
+        displayHighScore(); // Display the high score when the game starts
+    }
+
     function control(e) {
         if (e.code === 'Space') {
             if (!isJumping) {
@@ -21,18 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isJumping) {
             jump();
         }
-    })
+    });
     document.addEventListener('click', function() {
         if (!isJumping) {
             jump();
         }
-    })
-    
-
-    
-    document.addEventListener('keydown', control);
+    });
 
     let position = 0;
+
     function jump() {
         isJumping = true;
         let count = 0;
@@ -45,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         isJumping = false;
                     }
                     position -= 5;
-                    count--; 
+                    count--;
                     position = position * gravity;
                     dino.style.bottom = position + 'px';
                 }, 10);
@@ -71,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(generateObstacles, randomTime);
         }
     }
-    
+
     function createObstacle(className) {
         let obstaclePosition = 1000;
         const obstacle = document.createElement('div');
@@ -83,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (obstaclePosition > 0 && obstaclePosition < 60 && position < 60) {
                 clearInterval(timerId);
                 alert.style.opacity = '100%';
-                movingbg.style.animationIterationCount = 0;
+                movingbg.style.animationPlayState = 'paused'; // Pauses the background animation
                 isGameOver = true;
-                stopTimer(); // Stop the timer when game is over
+                stopTimer(); // Stop the timer when the game is over
                 updateHighScore(); // Update the high score in local storage
     
                 while (grid.firstChild) {
@@ -98,9 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 20);
     }
     
-    generateObstacles();
-    startTimer(); // Start the timer when the game starts
-    displayHighScore(); // Display the high score when the game starts
+
+    // Add listeners for the first interaction to start the game
+    document.addEventListener('keydown', startGame);
+    document.addEventListener('touchstart', startGame);
+    document.addEventListener('click', startGame);
 });
 
 function rstFunc() {
@@ -174,18 +190,8 @@ function formatTime(milliseconds) {
     return `HT ${pad(minutes)}:${pad(seconds)}`;
 }
 
-// Automatically start the timer when the script loads
-document.addEventListener('DOMContentLoaded', startTimer);
-
-// Example of stopping and resetting the timer
-document.getElementById('stopButton').addEventListener('click', stopTimer);
-document.getElementById('resetButton').addEventListener('click', resetTimer);
-
 // Function to handle game over
 function gameOver() {
     stopTimer();
     alert("Game Over!");
 }
-
-// Example call to gameOver when game ends (you should replace this with your actual game over logic)
-setTimeout(gameOver, 10000); // This is just a placeholder to simulate the game over condition
