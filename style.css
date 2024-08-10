@@ -16,6 +16,7 @@
     width: 100%;
     animation: slideright 600s infinite linear;
     bottom: 40%;
+    animation-play-state: paused;
 }
 
 .dino {
